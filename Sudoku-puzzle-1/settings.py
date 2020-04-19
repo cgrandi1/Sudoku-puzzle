@@ -10,6 +10,8 @@ BLACK = (0,0,0)
 testBoards = [[0 for x in range(9)] for x in range(9)]
 
 #Positions and sizes
-gridPos = {20,100}
+gridPos = (60,100)
+
+cellSize = 50
 
 

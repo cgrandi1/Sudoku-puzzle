@@ -34,5 +34,11 @@ class App:
         pygame.display.update()
 
     def drawGrid(self):
-        pygame.draw.react(window, BLACK, (gridPos[0], gridPos[1], WIDTH-40, HEIGHT-120))
-
+        pygame.draw.react(window, BLACK, (gridPos[0], gridPos[1], WIDTH-150, HEIGHT-150), 2)
+        for x in range(9):
+            if x % 3 != 0!
+                pygame.draw.line(window, BLACK, (gridPos[0]+(x*cellSize), gridPos[1]), (gridPos[0]+(x*cellSize), gridPos[1]+450))
+                pygame.draw.line(window, BLACK, (gridPos[0]+(x*cellSize), gridPos[1]+(x*cellSize)), (gridPos[0]+450, gridPos[1]++(x*cellSize)))
+            else: 
+                pygame.draw.line(window, BLACK, (gridPos[0]+(x*cellSize), gridPos[1]), (gridPos[0]+(x*cellSize), gridPos[1]+450), 2)
+                pygame.draw.line(window, BLACK, (gridPos[0]+(x*cellSize), gridPos[1]+(x*cellSize)), (gridPos[0]+450, gridPos[1]++(x*cellSize)), 2)

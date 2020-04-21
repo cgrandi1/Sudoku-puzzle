@@ -42,9 +42,15 @@ class App:
     
     def playing_update(self):
         self.mousePos = pygame.mouse.get_pos()
+        for button in self.playingButtons:
+            button.update(self.mousePos)
 
     def playing_draw(self):
         self.window.fill(WHITE)
+
+         for button in self.playingButtons:
+            button.draw(self.window)
+
         if self.selected:
             self.drawSelection(self.window, self.selected)
         self.drawGrid(window)
@@ -73,4 +79,5 @@ def mouseOnGrid(self):
         return False
     return ((self.mousePos[0]-gridPos[0]//cellSize, (self.mousePos(1)-gridPos[1])//cellSize)
     
-def loadButtons(self)
+def loadButtons(self):
+    self.playingButtons.append(Button(20, 40, 100, 40))

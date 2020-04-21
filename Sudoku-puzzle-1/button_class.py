@@ -11,7 +11,7 @@ class Button:
         self.highlightedColor = highlightedColor
         self.function = function
         self.params = params
-        self.highlight = False
+        self.highlighted = False
     
     def update(self, mouse):
         if self.rectangle.collidepoint(mouse):
@@ -20,9 +20,6 @@ class Button:
             self.highlightedColor = False
     
     def draw(self, window):
-        if self.highlight:
-            self.image.fill(self.highlight)
-        else:
-            self.image.fill(self.color)
+        self.image.fill(self.highlightedColor if self.highlighted else self.color)
         window.blit(self.image, self.pos)
 

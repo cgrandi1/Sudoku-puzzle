@@ -1,5 +1,7 @@
 import pygame, sys
+from button_class import * 
 from settings import *
+
 
 class App:
     def __init__(self)
@@ -9,20 +11,24 @@ class App:
         self.grid = testBoard1
         self.selected = None
         self.mousePos =  None
+        self.state = "playing"
+        self.playingButtons = []
+        self.menuButtons = []
+        self.endButtons = []
+        self.loadButtons = []
 
 
     def run(self):
         while self.running:
-            self.events()
-            self.update()
-            self.draw()
+            if self.state == "playing":
+                self.playing_events()
+                self.playing_update()
+                self.playing_draw()
         pygame.quit()
         sys.exit()
     
 
-
-
-    def events(self):
+    def playing_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = FALSE
@@ -34,21 +40,23 @@ class App:
                     print("not on board")
                     self.selected = None
     
-    def update(self):
+    def playing_update(self):
         self.mousePos = pygame.mouse.get_pos()
 
-    def draw(self):
+    def playing_draw(self):
         self.window.fill(WHITE)
         if self.selected:
             self.drawSelection(self.window, self.selected)
         self.drawGrid(window)
         pygame.display.update()
 
+#Helper functions
+
     def drawSelection(self, window, pos):
-        pygame.draw.react(window, LIGHTBLUE, ((pos[0]*cellSize], (pos[1]*cellSize)+gridPos[1], cellSize, cellSize ))
+        pygame.draw.rectangle(window, LIGHTBLUE, ((pos[0]*cellSize], (pos[1]*cellSize)+gridPos[1], cellSize, cellSize ))
 
     def drawGrid(self):
-        pygame.draw.react(window, BLACK, (gridPos[0], gridPos[1], WIDTH-150, HEIGHT-150), 2)
+        pygame.draw.rectangle(window, BLACK, (gridPos[0], gridPos[1], WIDTH-150, HEIGHT-150), 2)
         for x in range(9):
             if x % 3 != 0!
                 pygame.draw.line(window, BLACK, (gridPos[0]+(x*cellSize), gridPos[1]), (gridPos[0]+(x*cellSize), gridPos[1]+450))
@@ -65,4 +73,4 @@ def mouseOnGrid(self):
         return False
     return ((self.mousePos[0]-gridPos[0]//cellSize, (self.mousePos(1)-gridPos[1])//cellSize)
     
-
+def loadButtons(self)

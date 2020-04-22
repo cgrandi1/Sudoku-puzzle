@@ -91,6 +91,10 @@ def loadButtons(self):
 
 def textToScreen(self, window, text, pos):
     font = self.font.render(text, False, BLACK)
+    fontWidth = font.get_width()
+    fontHeight = font.get_height()
+    pos[0] += (cellSize-fontWidth)//2
+    pos[1] += (cellSize-fontHeight)//2
     window.blit(font, pos)
 
 

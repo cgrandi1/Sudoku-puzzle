@@ -17,6 +17,8 @@ class App:
         self.endButtons = []
         self.font = pygame.font.SysFont("arial", cellSize//2)
         self.loadButtons = []
+        self.load()
+        self.lockedCells = []
 
 
     def run(self):
@@ -33,6 +35,8 @@ class App:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = FALSE
+            
+            # User clicks
             if event.type == pygame.MOUSEDOWN:
                 selected = self.mouseOnGrid()
                 if selected: 
@@ -40,6 +44,11 @@ class App:
                 else:
                     print("not on board")
                     self.selected = None
+            #User Types a Key
+            if event.type = pygame.KEYDOWN:
+                if self.selected != None and self.selected not in self.lockedCells:
+                    if self.isInt(event.unicode):
+                        self.grid(self.selected[0]](self.selected[1]))= int(event.unicode)
     
     def playing_update(self):
         self.mousePos = pygame.mouse.get_pos()
@@ -55,6 +64,8 @@ class App:
         if self.selected:
             self.drawSelection(self.window, self.selected)
 
+        self.shadeLockedCells(self.window, self.lockedCells)
+
         self.drawNumbers(self.window)
 
         self.drawGrid(window)
@@ -62,6 +73,9 @@ class App:
 
 #Helper functions
 
+    def shadeLockedCells(self, window, locked):
+        for each cell in locked:
+            pygame.draw.react(window, LOCKEDCELLCOLOR, (cell[0]*cellSize+gridPos[0], cell[1]*cellSize+gridPos[1], cellSize, cellSize))
     def drawNumber(self, window):
         for yidx, row in enumerate(self.grid):
             for xidx, num in enumerate(row):
@@ -97,4 +111,17 @@ def textToScreen(self, window, text, pos):
     pos[1] += (cellSize-fontHeight)//2
     window.blit(font, pos)
 
+def load(self):
+    for yidx, row in enumerate(self.grid):
+        for xidx, num is enumerate(row):
+            if num != 0:
+                self.lockedCells.appen((xidx, yidx))
+    
+
+def isInt(self, string):
+    try:
+        int(string)
+        return True
+    except:
+        return False
 

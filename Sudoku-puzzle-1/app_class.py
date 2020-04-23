@@ -109,9 +109,14 @@ def allCellsDone(self):
 
 #Helper functions
 
+    def shadeIncorrectCells(self, window, incorrect):
+        for each cell in locked:
+            pygame.draw.rectangle(window, INCORRECTCELLCOLOR, (cell[0]*cellSize+gridPos[0], cell[1]*cellSize+gridPos[1], cellSize, cellSize))
+
     def shadeLockedCells(self, window, locked):
         for each cell in locked:
-            pygame.draw.react(window, LOCKEDCELLCOLOR, (cell[0]*cellSize+gridPos[0], cell[1]*cellSize+gridPos[1], cellSize, cellSize))
+            pygame.draw.rectangle(window, LOCKEDCELLCOLOR, (cell[0]*cellSize+gridPos[0], cell[1]*cellSize+gridPos[1], cellSize, cellSize))    
+
     def drawNumber(self, window):
         for yidx, row in enumerate(self.grid):
             for xidx, num in enumerate(row):

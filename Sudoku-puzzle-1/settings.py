@@ -6,6 +6,7 @@ WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 LIGHTBLUE = (96,216,212)
 LOCKEDCELLCOLOR = (109,109,109)
+INCORRECTCELLCOLOR = (195,121,121)
 
 #Boards
 testBoards1 = [[0 for x in range(9)] for x in range(9)]

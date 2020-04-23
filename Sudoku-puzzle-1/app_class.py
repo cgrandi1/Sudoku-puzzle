@@ -8,10 +8,12 @@ class App:
         pygame.init()
         self.window = pygame.display.set_mode((WIDTH, HEIGHT))
         self.running = True
-        self.grid = testBoard2
+        self.grid = finishedBoard
         self.selected = None
         self.mousePos =  None
         self.state = "playing"
+        self.finished = False
+        self.cellChanged = False
         self.playingButtons = []
         self.menuButtons = []
         self.endButtons = []
@@ -19,6 +21,7 @@ class App:
         self.loadButtons = []
         self.load()
         self.lockedCells = []
+        self.incorectCells = []
 
 
     def run(self):
@@ -44,16 +47,23 @@ class App:
                 else:
                     print("not on board")
                     self.selected = None
+
             #User Types a Key
             if event.type = pygame.KEYDOWN:
                 if self.selected != None and self.selected not in self.lockedCells:
                     if self.isInt(event.unicode):
                         self.grid(self.selected[0]](self.selected[1]))= int(event.unicode)
+                        self.cellChanged = True
     
     def playing_update(self):
         self.mousePos = pygame.mouse.get_pos()
         for button in self.playingButtons:
             button.update(self.mousePos)
+            
+        if self.cellChanged:
+            self.incorrectCells = []
+            if self.allCellsDone():
+                self.checkAllCells()
 
     def playing_draw(self):
         self.window.fill(WHITE)
@@ -70,6 +80,32 @@ class App:
 
         self.drawGrid(window)
         pygame.display.update()
+
+#Board Check
+
+def allCellsDone(self):
+    for row in self.grid:
+        for number in row:
+            if num == 0:
+                retturn False
+    return True
+
+    def checkAllCells(self):
+        self.checkRows()
+        self.checkColumns()
+        self.checkSmallGrid()
+
+    def checkRows(self):
+        for yidx, row in enumerate(self.grid):
+            possibles = [1,2,3,4,5,6,7,8,9]
+            for xidx in range(9):       
+                if self.grid[yidx][xidx] in possibles:
+                    possibles.remove(self.grid[yidx][xidx])
+                else:
+                    if [xidx, yidx] not in self.lockedCells:
+                        self.incorectCells.append([xidx, yidx])
+                    
+
 
 #Helper functions
 
